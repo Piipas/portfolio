@@ -15,7 +15,19 @@ const config: Config = {
       },
       colors: {
         primary: "#92d79a",
+        secondary: "#101626",
+        danger: "#f44a55",
+        text: "#ffffff4d",
       },
+      lineHeight: {
+        sidebar: "1.16",
+        title: "50px",
+        button: "1.26",
+      },
+    },
+    container: {
+      center: true,
+      padding: "1.75rem",
     },
   },
   plugins: [],

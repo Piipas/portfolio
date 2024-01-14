@@ -1,12 +1,12 @@
 import React from "react";
-import Code from "../ui/code";
+import Code from "../atoms/code";
 import Link from "next/link";
 
 function Header() {
   return (
-    <div className="container mx-auto px-5 h-[70px] bg-transparent flex justify-between text-md font-semibold">
-      <Link href="/" className="h-full flex items-center">
-        <Code intent={"static"}>PabloParasenko</Code>
+    <div className="container h-[70px] bg-transparent flex justify-between text-md">
+      <Link href="/" className="h-full flex items-center font-medium">
+        <Code intent={"static"}>IsmailBaalouk</Code>
       </Link>
     </div>
   );

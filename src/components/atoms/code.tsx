@@ -14,15 +14,25 @@ const code = cva(
     "before:right-full",
     "after:absolute",
     "after:left-full",
+    "before:content-['<']",
+    "before:text-primary",
+    "after:content-['/>']",
+    "after:text-primary",
   ],
   {
     variants: {
       intent: {
         hover: [
-          "hover:before:content-['<']",
+          "before:text-transparent",
+          "after:text-transparent",
           "hover:before:text-primary",
-          "hover:after:content-['/>']",
           "hover:after:text-primary",
+          "after:transition-all",
+          "before:transition-all",
+          "after:duration-200",
+          "before:duration-200",
+          "before:ease-in",
+          "after:ease-in",
         ],
         static: [
           "before:content-['<']",

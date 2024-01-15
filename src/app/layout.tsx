@@ -28,7 +28,7 @@ export default function RootLayout({
               { name: "About", route: "/about" },
               { name: "Work", route: "/work" },
               { name: "Skills", route: "/skills" },
-              { name: "Contacts", route: "/contact" },
+              { name: "Contacts", route: "/contacts" },
             ]}
           />
           {children}

@@ -1,6 +1,7 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { RiDownloadLine } from "react-icons/ri";
+import { LiaTimesSolid } from "react-icons/lia";
 
 interface iconProps {
   className?: string;
@@ -19,6 +20,7 @@ function Icon({ size, color, name, ...props }: iconProps) {
     linkedin: <FaLinkedin size={size} color={color} {...props} />,
     twitter: <FaXTwitter size={size} color={color} {...props} />,
     download: <RiDownloadLine size={size} color={color} {...props} />,
+    close: <LiaTimesSolid size={size} color={color} {...props} />,
   };
 
   return icons[name];

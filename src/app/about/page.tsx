@@ -22,15 +22,15 @@ function page() {
         <Title>Hi, I’m Ismail Baalouk</Title>
         <Paragraph>
           I’m Pavel from Kyiv, Ukraine. I have more than 2 years’{" "}
-          <span
+          <button
             className={classNames(
               roboto_slab.className,
-              "text-primary border active:border-primary border-dashed border-transparent cursor-pointer px-1 font-medium"
+              "text-primary border focus:border-primary border-dashed border-transparent cursor-pointer px-1 font-medium"
             )}
             onClick={() => handleExperiences(true)}
           >
             experience
-          </span>{" "}
+          </button>{" "}
           in HTML/CSS/Javascript. I love creating user interfaces which are
           intuitive, convenient and beautiful. Of course, I’m paying attention
           to performance and accessibility that I consider to be highly

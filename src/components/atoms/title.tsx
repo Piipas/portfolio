@@ -8,7 +8,7 @@ function Title({ children }: { children: React.ReactNode }) {
   return (
     <h2
       className={classNames(
-        "w-full text-[44px] leading-title mb-8",
+        "w-full text-[44px] leading-title mb-8 capitalize",
         roboto_slab.className
       )}
     >

@@ -9,8 +9,8 @@ function Footer() {
     { name: "twitter", route: "https://twitter.com/pipasdev" },
   ];
   return (
-    <div className="footer h-[70px] container px-7">
-      <div className="social flex gap-4 items-center h-full">
+    <div className="footer h-[70px] px-7 w-0 z-30">
+      <div className="social flex gap-4 content-center h-full">
         {social.map((item, index) => (
           <Link
             href={item.route}

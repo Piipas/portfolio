@@ -15,7 +15,7 @@ function Paragraph({ children, size, color, className }: paragraphProps) {
     <p
       className={classNames(
         montserrat.className,
-        size ? `text-[${size}]` : "text-base",
+        size ? `text-[${size}px]` : "text-base",
         className
       )}
     >

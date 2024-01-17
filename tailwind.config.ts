@@ -18,6 +18,7 @@ const config: Config = {
         secondary: "#101626",
         danger: "#f44a55",
         text: "#ffffff4d",
+        error: "#f44a55",
       },
       lineHeight: {
         sidebar: "1.16",

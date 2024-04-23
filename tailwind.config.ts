@@ -16,6 +16,15 @@ const config: Config = {
         foreground: "rgb(var(--foreground-rgb))",
         background: "rgb(var(--background-end-rgb))",
       },
+      keyframes: {
+        show: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        show: "show 1s 2s forwards",
+      },
     },
   },
   plugins: [],

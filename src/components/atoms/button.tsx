@@ -4,10 +4,10 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "regular";
   size?: "regular";
   radius?: "circle";
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | string | (JSX.Element | string)[];
 }
 
 const button = cva("transition-all", {
@@ -15,19 +15,21 @@ const button = cva("transition-all", {
     intent: {
       primary: "bg-gradient-to-t from-gray-900 to-gray-800 text-foreground",
       secondary: "bg-gray-700 hover:bg-gray-800",
+      regular: "bg-gray-200 text-gray-600 hover:bg-gray-300",
     },
     size: {
-      regular: "w-14 h-14 p-4",
+      icon: "w-14 h-14 p-4",
+      regular: "w-auto px-6 py-3 text-lg",
     },
     radius: {
       default: "rounded-xl",
       circle: "rounded-full",
     },
   },
-  compoundVariants: [{ intent: "primary", size: "regular", radius: "default", class: "uppercase" }],
+  compoundVariants: [{ intent: "primary", size: "icon", radius: "default", class: "uppercase" }],
   defaultVariants: {
     intent: "primary",
-    size: "regular",
+    size: "icon",
     radius: "default",
   },
 });

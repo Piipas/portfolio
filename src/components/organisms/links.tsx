@@ -4,7 +4,7 @@ import { Button } from "@/components/atoms/button";
 import { cn } from "@/lib/utils";
 import { useCards } from "@/providers/cards-provider";
 import { motion, Variants } from "framer-motion";
-import { Github, Layers, Mail, Twitter } from "lucide-react";
+import { Github, Info, Layers, Mail, Twitter } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export type Link = {

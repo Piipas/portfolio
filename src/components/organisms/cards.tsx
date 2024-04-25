@@ -2,12 +2,50 @@
 
 import { useCards } from "@/providers/cards-provider";
 import { Card } from "../atoms/card";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import { Button } from "../atoms/button";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
-const cards = ["Music Player", "Lcomeback", "Something"];
+const cards: Card[] = [
+  {
+    label: "Music Player",
+    title: "Music Player",
+    logo: "",
+    screenshot: "/cards/1.png",
+    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    "source-code": "https://github.com/piipas",
+    url: "",
+  },
+  {
+    label: "Lcomeback",
+    title: "Lcomeback",
+    logo: "",
+    screenshot: "/cards/1.png",
+    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    "source-code": "https://github.com/piipas",
+    url: "https://lcomeback.com",
+  },
+  {
+    label: "Something",
+    title: "Something",
+    logo: "",
+    screenshot: "/cards/1.png",
+    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    "source-code": "https://github.com/piipas",
+    url: "",
+  },
+  {
+    label: "Something",
+    title: "Something",
+    logo: "",
+    screenshot: "/cards/1.png",
+    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    "source-code": "https://github.com/piipas",
+    url: "",
+  },
+];
 
 const containerVariants = {
   hidden: { opacity: 0, zIndex: -10 },
@@ -21,7 +59,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { y: 50, opacity: 0 },
+  hidden: { y: 50, x: 0, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -37,33 +75,48 @@ const itemVariants = {
 export const Cards = () => {
   const { isOpen, toggle } = useCards();
   const constraintsRef = useRef(null);
-  const [activeCard, setActiveCard] = useState<number>(0);
+  const [activeCard, setActiveCard] = useState<number | null>();
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const dragControls = useDragControls();
 
   return (
     <motion.div
-      className={"flex items-center justify-center absolute w-full h-screen overflow-hidden -z-10"}
+      className={
+        "flex items-center justify-center absolute w-full h-screen overflow-hidden -z-10 backdrop-blur-sm transition-all"
+      }
       variants={containerVariants}
       initial="hidden"
       animate={isOpen ? "visible" : "hidden"}
       ref={constraintsRef}
     >
+      <div className="absolute top-0 left-0 w-full h-full" onClick={() => setActiveCard(null)}></div>
       <Button
         radius="circle"
         variant="secondary"
         className="absolute top-5 left-1/2 -translate-1/2 z-10"
-        onClick={() => toggle()}
+        onClick={() => (toggle(), setActiveCard(null))}
       >
         <X />
       </Button>
-      {cards.map((content) => (
+      {cards.map((content, index) => (
         <motion.div
+          key={index}
+          className={cn(
+            activeCard === index ? `duration-500 !-translate-x-0 !-translate-y-0 !z-50` : "",
+            !isDragging && "transition-transform",
+          )}
+          dragControls={dragControls}
           variants={itemVariants}
-          drag
+          drag={activeCard !== index}
           dragConstraints={constraintsRef}
+          dragTransition={{ power: 0, min: 0, max: 400, timeConstant: 500 }}
           dragElastic={0.1}
-          style={{ perspective: "1000px" }}
+          onDrag={() => setActiveCard(null)}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => setIsDragging(false)}
+          onDoubleClick={() => !isDragging && setActiveCard(index)}
         >
-          <Card content={content} />
+          <Card content={content} isActive={activeCard == index} />
         </motion.div>
       ))}
     </motion.div>

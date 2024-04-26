@@ -4,7 +4,7 @@ import { Button } from "@/components/atoms/button";
 import { cn } from "@/lib/utils";
 import { useCards } from "@/providers/cards-provider";
 import { motion, Variants } from "framer-motion";
-import { Github, Info, Layers, Mail, Twitter } from "lucide-react";
+import { Github, Layers, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export type Link = {
@@ -53,6 +53,8 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
+      delay: 2,
+      delayChildren: 2,
     },
   },
 };
@@ -74,7 +76,7 @@ export const Links = () => {
   const { toggle } = useCards();
 
   return (
-    <motion.div className="flex gap-x-6" initial="hidden" animate="visible" variants={containerVariants}>
+    <motion.div className="flex gap-x-6 justify-center" initial="hidden" animate="visible" variants={containerVariants}>
       {links.map(({ icon, url, label, point }) => (
         <motion.div key={label} className="group relative" variants={buttonVariants}>
           <Button

@@ -1,14 +1,14 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Variants, motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -25,49 +25,36 @@ const charVariants: Variants = {
   },
 };
 
-const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-
-const Typewriter = ({
-  text,
-  delay,
-  randomCharDelay,
-  className,
-}: {
-  text: string;
-  delay: number;
-  randomCharDelay: number;
-  className?: string;
-}) => {
-  const chars = text.split("");
-  const [currentText, setCurrentText] = useState<string>("");
+const TypeWriter = ({ className, target }: { className?: string; target: string }) => {
+  const randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  const [displayWord, setDisplayWord] = useState<string>(target);
 
   useEffect(() => {
-    const generateRandomChar = () => {
-      return String.fromCharCode(Math.floor(Math.random() * 26) + 97); // Generate lowercase letter
-    };
-
+    let pastDuration = 0;
     const intervalId = setInterval(() => {
-      setCurrentText((prevText) => prevText + generateRandomChar());
-    }, randomCharDelay);
+      pastDuration += 1000;
+      const randomWord = Array.from(target)
+        .map(() => randomChars[Math.floor(Math.random() * randomChars.length)])
+        .join("");
 
-    const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
-      setCurrentText(text);
-    }, delay);
+      setDisplayWord(target.slice(0, pastDuration / 1000) + randomWord.slice(pastDuration / 1000));
 
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
-  }, [text, delay, randomCharDelay]);
+      if (Math.round(pastDuration / 1000 - 1) === target.length) clearInterval(intervalId);
+    }, 100);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
-    <div className="text-center w-full">
-      <motion.div variants={containerVariants} initial="hidden" animate="visible" className={className}>
-        {currentText}
-      </motion.div>
-    </div>
+    <motion.div variants={containerVariants} initial="hidden" animate="visible">
+      <div className={className}>
+        {displayWord.split("").map((char, i) => (
+          <motion.span key={i} variants={charVariants}>
+            {char}
+          </motion.span>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 
-export default Typewriter;
+export default TypeWriter;

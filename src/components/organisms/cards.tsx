@@ -2,7 +2,7 @@
 
 import { useCards } from "@/providers/cards-provider";
 import { Card } from "../atoms/card";
-import { motion, useDragControls } from "framer-motion";
+import { motion, useDragControls, Variants } from "framer-motion";
 import { Button } from "../atoms/button";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";
@@ -47,7 +47,7 @@ const cards: Card[] = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, zIndex: -10 },
   visible: {
     opacity: 1,
@@ -58,7 +58,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 50, x: 0, opacity: 0 },
   visible: {
     y: 0,
@@ -77,17 +77,23 @@ export const Cards = () => {
   const constraintsRef = useRef(null);
   const [activeCard, setActiveCard] = useState<number | null>();
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isAnnimating, setIsAnnimating] = useState<boolean>(false);
   const dragControls = useDragControls();
+
+  console.log(constraintsRef);
 
   return (
     <motion.div
+      ref={constraintsRef}
       className={
         "flex items-center justify-center absolute w-full h-screen overflow-hidden -z-10 backdrop-blur-sm transition-all"
       }
       variants={containerVariants}
       initial="hidden"
       animate={isOpen ? "visible" : "hidden"}
-      ref={constraintsRef}
+      onAnimationComplete={() => setIsAnnimating(false)}
+      onAnimationStart={() => setIsAnnimating(true)}
+      onAnimationEnd={() => setIsAnnimating(false)}
     >
       <div className="absolute top-0 left-0 w-full h-full" onClick={() => setActiveCard(null)}></div>
       <Button
@@ -103,14 +109,14 @@ export const Cards = () => {
           key={index}
           className={cn(
             activeCard === index ? `duration-500 !-translate-x-0 !-translate-y-0 !z-50` : "",
-            !isDragging && "transition-transform",
+            !isDragging && !isAnnimating ? "transition-transform cursor-pointer" : "cursor-grabbing",
           )}
           dragControls={dragControls}
           variants={itemVariants}
           drag={activeCard !== index}
           dragConstraints={constraintsRef}
           dragTransition={{ power: 0, min: 0, max: 400, timeConstant: 500 }}
-          dragElastic={0.1}
+          dragElastic={false}
           onDrag={() => setActiveCard(null)}
           onDragStart={() => setIsDragging(true)}
           onDragEnd={() => setIsDragging(false)}

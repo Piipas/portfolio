@@ -42,7 +42,7 @@ const TypeWriter = ({ className, target }: { className?: string; target: string 
       if (Math.round(pastDuration / 1000 - 1) === target.length) clearInterval(intervalId);
     }, 100);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [target]);
 
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">

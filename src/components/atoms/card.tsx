@@ -28,11 +28,11 @@ export const Card = ({ content, isActive }: { content: Card; isActive: boolean }
         className="w-full h-full relative transition-transform duration-500 transform-style-3d"
         style={{ transform: isActive ? `rotate(${0}deg) rotateY(180deg)` : `rotate(${rotation}deg)` }}
       >
-        <div className="absolute top-0 left-0 bg-white w-full h-full font-extrabold flex items-center justify-center rounded-3xl shadow-2xl overflow-hidden backface-visibility-hiddenn cursor-grab">
+        <div className="absolute top-0 left-0 bg-white w-full h-full font-extrabold flex items-center justify-center rounded-3xl shadow-2xl overflow-hidden backface-visibility-hiddenn">
           {content.label}
         </div>
         <div
-          className="absolute top-1/2 left-1/2 bg-white w-[500px] h-[calc(100vh-300px)] max-h-[700px] rounded-3xl backface-visibility-hidden p-10 flex flex-wrap gap-y-6 content-between"
+          className="absolute top-1/2 left-1/2 bg-white w-[500px] h-[calc(100vh-300px)] max-h-[700px] rounded-3xl backface-visibility-hidden p-10 flex flex-wrap gap-y-6 content-between cursor-auto"
           style={{ transform: "rotateY(180deg) translateX(50%) translateY(-50%)" }}
         >
           <div className="space-y-6 flex-wrap">

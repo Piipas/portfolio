@@ -11,7 +11,7 @@ const About = () => {
         target="Ismail Baalouk"
         className={cn("text-5xl xl:text-8xl text-gray-300 font-extrabold uppercase", titillium_Web.className)}
       />
-      <div className="text-xl">Full stack web developer</div>
+      <Typewriter target="Full stack web developer" className="text-xl" />
     </div>
   );
 };

@@ -80,8 +80,6 @@ export const Cards = () => {
   const [isAnnimating, setIsAnnimating] = useState<boolean>(false);
   const dragControls = useDragControls();
 
-  console.log(constraintsRef);
-
   return (
     <motion.div
       ref={constraintsRef}

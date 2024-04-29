@@ -1,49 +1,56 @@
 "use client";
 
 import { useCards } from "@/providers/cards-provider";
-import { Card } from "../atoms/card";
-import { motion, useDragControls, Variants } from "framer-motion";
-import { Button } from "../atoms/button";
+import { Card } from "@/components/atoms/card";
+import { motion, PanInfo, Variants } from "framer-motion";
+import { Button } from "@/components/atoms/button";
 import { X } from "lucide-react";
 import { useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useWindowSize } from "usehooks-ts";
 
 const cards: Card[] = [
   {
     label: "Music Player",
     title: "Music Player",
     logo: "",
-    screenshot: "/cards/1.png",
+    screenshot: "/cards/screenshots/2.png",
     description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
-    "source-code": "https://github.com/piipas",
-    url: "",
+    "source-code": "https://github.com/piipas/music-player",
+    url: "https://music-player-client.vercel.app/",
+    wip: true,
+    visible: true,
   },
   {
     label: "Lcomeback",
     title: "Lcomeback",
     logo: "",
-    screenshot: "/cards/1.png",
+    screenshot: "/cards/screenshots/1.png",
     description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
-    "source-code": "https://github.com/piipas",
     url: "https://lcomeback.com",
+    wip: false,
+    visible: true,
   },
   {
-    label: "Something",
-    title: "Something",
-    logo: "",
-    screenshot: "/cards/1.png",
+    label: "Bymaad",
+    title: "Bymaad",
+    logo: "/cards/logos/bymaad.png",
+    screenshot: "/cards/screenshots/1.png",
     description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
-    "source-code": "https://github.com/piipas",
-    url: "",
+    url: "https://by-maad.vercel.app",
+    wip: true,
+    visible: true,
   },
   {
-    label: "Something",
-    title: "Something",
+    label: "Weather App",
+    title: "Weather App",
     logo: "",
-    screenshot: "/cards/1.png",
+    screenshot: "/cards/screenshots/1.png",
     description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
-    "source-code": "https://github.com/piipas",
-    url: "",
+    "source-code": "https://github.com/Piipas/weather",
+    url: "https://weather-seven-pi.vercel.app/",
+    wip: false,
+    visible: true,
   },
 ];
 
@@ -73,54 +80,94 @@ const itemVariants: Variants = {
 };
 
 export const Cards = () => {
-  const { isOpen, toggle } = useCards();
   const constraintsRef = useRef(null);
+  const { isOpen, toggle } = useCards();
   const [activeCard, setActiveCard] = useState<number | null>();
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [isAnnimating, setIsAnnimating] = useState<boolean>(false);
-  const dragControls = useDragControls();
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [visibleCards, setVisibleCards] = useState<Card[]>(cards);
+  const { width = window.innerWidth } = useWindowSize();
+
+  const handleDragEnd = (info: PanInfo, card: number) => {
+    if (width < 768) {
+      const threshold = 100;
+      const x = info.offset.x;
+
+      if (Math.abs(x) > threshold) {
+        const newVisibleCards = visibleCards.map((c) =>
+          visibleCards.indexOf(c) === card ? { ...c, visible: false } : c,
+        );
+        setVisibleCards(newVisibleCards);
+        if (newVisibleCards.filter((c) => c.visible).length === 0) {
+          setTimeout(() => {
+            toggle();
+          }, 500);
+          setTimeout(() => {
+            setVisibleCards(cards);
+          }, 700);
+        }
+      }
+    }
+
+    setIsDragging(false);
+  };
 
   return (
     <motion.div
       ref={constraintsRef}
       className={
-        "flex items-center justify-center absolute w-full h-screen overflow-hidden -z-10 backdrop-blur-sm transition-all"
+        "flex items-center justify-center absolute w-full h-full overflow-hidden -z-10 backdrop-blur-sm transition-all"
       }
       variants={containerVariants}
       initial="hidden"
       animate={isOpen ? "visible" : "hidden"}
-      onAnimationComplete={() => setIsAnnimating(false)}
-      onAnimationStart={() => setIsAnnimating(true)}
-      onAnimationEnd={() => setIsAnnimating(false)}
+      onAnimationComplete={() => setIsAnimating(false)}
+      onAnimationStart={() => setIsAnimating(true)}
+      onAnimationEnd={() => setIsAnimating(false)}
     >
       <div className="absolute top-0 left-0 w-full h-full" onClick={() => setActiveCard(null)}></div>
       <Button
         radius="circle"
         variant="secondary"
-        className="absolute top-5 left-1/2 -translate-1/2 z-10"
+        className="absolute top-5 left-1/2 -translate-x-1/2 z-10 hidden md:block"
         onClick={() => (toggle(), setActiveCard(null))}
       >
         <X />
       </Button>
-      {cards.map((content, index) => (
+      {visibleCards.map((content, index) => (
         <motion.div
           key={index}
           className={cn(
-            activeCard === index ? `duration-500 !-translate-x-0 !-translate-y-0 !z-50` : "",
-            !isDragging && !isAnnimating ? "transition-transform cursor-pointer" : "cursor-grabbing",
+            "card w-[300px]",
+            width < 768 && "transition-opacity",
+            content.visible ? "visible" : "!opacity-0 invisible",
+            activeCard === index && `duration-500 !-translate-x-0 !-translate-y-0 !z-50`,
+            !isDragging && !isAnimating ? "transition-all cursor-pointer" : "cursor-grabbing",
           )}
-          dragControls={dragControls}
+          style={{
+            position: width < 768 ? "absolute" : "static",
+            top: width < 768 ? `calc(50% - (370px / 2) - ${10 * index}px)` : "",
+            left: width < 768 ? `calc(50% - (300px / 2))` : "",
+          }}
           variants={itemVariants}
-          drag={activeCard !== index}
-          dragConstraints={constraintsRef}
+          drag={width < 768 ? "x" : activeCard !== index ? true : false}
+          dragConstraints={width >= 768 ? constraintsRef : { left: 0, right: 0 }}
           dragTransition={{ power: 0, min: 0, max: 400, timeConstant: 500 }}
-          dragElastic={false}
+          dragElastic={width < 768 ? 0.5 : false}
           onDrag={() => setActiveCard(null)}
           onDragStart={() => setIsDragging(true)}
-          onDragEnd={() => setIsDragging(false)}
+          onDragEnd={(a, b) => handleDragEnd(b, index)}
           onDoubleClick={() => !isDragging && setActiveCard(index)}
         >
-          <Card content={content} isActive={activeCard == index} />
+          <Card
+            content={content}
+            isActive={activeCard == index}
+            style={{
+              position: activeCard === index ? "absolute" : "static",
+              top: activeCard === index ? `calc(50% - (370px / 2) - ${10 * index}px)` : "",
+              left: activeCard === index ? `calc(50% - (300px / 2))` : "",
+            }}
+          />
         </motion.div>
       ))}
     </motion.div>

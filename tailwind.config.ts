@@ -25,6 +25,9 @@ const config: Config = {
       animation: {
         show: "show 1s 2s forwards",
       },
+      transitionProperty: {
+        "backdrop-filter": "backdrop-filter",
+      },
     },
   },
   plugins: [],

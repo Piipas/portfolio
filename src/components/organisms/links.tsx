@@ -81,7 +81,7 @@ export const Links = () => {
         <motion.div key={label} className="group relative" variants={buttonVariants}>
           <Button
             className={cn(
-              "group-hover:-translate-y-3 transition-transform duraton-500 ease-in-out",
+              "md:group-hover:-translate-y-3 transition-transform duraton-500 ease-in-out",
               point &&
                 "after:w-4 after:h-4 after:absolute after:-top-1 after:-right-1 after:rounded-full after:bg-foreground after:opacity-0 after:animate-show",
             )}

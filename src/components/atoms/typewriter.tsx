@@ -26,7 +26,7 @@ const charVariants: Variants = {
 };
 
 const TypeWriter = ({ className, target }: { className?: string; target: string }) => {
-  const randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  const randomChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz1234567890";
   const [displayWord, setDisplayWord] = useState<string>(target);
 
   useEffect(() => {

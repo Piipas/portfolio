@@ -20,7 +20,17 @@ export type Card = {
   visible: boolean;
 };
 
-export const Card = ({ content, style, isActive }: { content: Card; style?: CSSProperties; isActive: boolean }) => {
+export const Card = ({
+  content,
+  style,
+  isActive,
+  className,
+}: {
+  content: Card;
+  style?: CSSProperties;
+  isActive: boolean;
+  className?: string;
+}) => {
   const rotation = useMemo(() => Math.round(Math.random() * (10 - -10) + -10), []);
   const [screenSize, setScreenSize] = useState(0);
   const { width, height } = useWindowSize();
@@ -29,7 +39,10 @@ export const Card = ({ content, style, isActive }: { content: Card; style?: CSSP
 
   return (
     <div
-      className="relative w-[300px] h-[400px] flex items-center justify-center text-3xl text-background select-none"
+      className={cn(
+        className,
+        "w-[300px] h-[400px] flex items-center justify-center text-3xl text-background select-none",
+      )}
       style={{ perspective: "1000px", zIndex: isActive ? "50" : undefined, ...style }}
     >
       <div

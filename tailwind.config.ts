@@ -27,6 +27,7 @@ const config: Config = {
       },
       transitionProperty: {
         "backdrop-filter": "backdrop-filter",
+        position: "position",
       },
     },
   },

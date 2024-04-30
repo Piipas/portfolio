@@ -3,6 +3,7 @@ import Typewriter from "../atoms/typewriter";
 import { Titillium_Web } from "next/font/google";
 
 const titillium_Web = Titillium_Web({ subsets: ["latin"], weight: ["900"] });
+// const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 const About = () => {
   return (

@@ -42,8 +42,8 @@ const cards: Card[] = [
     visible: true,
   },
   {
-    label: "Weather App",
-    title: "Weather App",
+    label: "Sonething",
+    title: "Sonething",
     logo: "",
     screenshot: "/cards/screenshots/1.png",
     description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
@@ -86,7 +86,7 @@ export const Cards = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [visibleCards, setVisibleCards] = useState<Card[]>(cards);
-  const { width } = useWindowSize({ initializeWithValue: true });
+  const { width = window?.innerWidth } = useWindowSize({ debounceDelay: 1000 });
 
   const handleDragEnd = (info: PanInfo, card: number) => {
     if (width < 768) {
@@ -99,12 +99,8 @@ export const Cards = () => {
         );
         setVisibleCards(newVisibleCards);
         if (newVisibleCards.filter((c) => c.visible).length === 0) {
-          setTimeout(() => {
-            toggle();
-          }, 500);
-          setTimeout(() => {
-            setVisibleCards(cards);
-          }, 700);
+          setTimeout(() => toggle(), 500);
+          setTimeout(() => setVisibleCards(cards), 700);
         }
       }
     }
@@ -129,7 +125,7 @@ export const Cards = () => {
       <Button
         radius="circle"
         variant="secondary"
-        className="absolute top-5 left-1/2 -translate-x-1/2 z-10 hidden md:block"
+        className="absolute top-5 left-1/2 -translate-x-1/2 z-[60] hidden md:block"
         onClick={() => (toggle(), setActiveCard(null))}
       >
         <X />
@@ -141,11 +137,11 @@ export const Cards = () => {
             "card w-[300px]",
             width < 768 && "transition-opacity",
             content.visible ? "visible" : "!opacity-0 invisible",
-            activeCard === index && `duration-500 !-translate-x-0 !-translate-y-0 !z-50`,
+            activeCard === index && `duration-500 !transform-none !z-50`,
             !isDragging && !isAnimating ? "transition-all cursor-pointer" : "cursor-grabbing",
           )}
           style={{
-            position: width < 768 ? "absolute" : "static",
+            position: width < 768 ? "absolute" : undefined,
             top: width < 768 ? `calc(50% - (370px / 2) - ${10 * index}px)` : "",
             left: width < 768 ? `calc(50% - (300px / 2))` : "",
           }}
@@ -156,16 +152,17 @@ export const Cards = () => {
           dragElastic={width < 768 ? 0.5 : false}
           onDrag={() => setActiveCard(null)}
           onDragStart={() => setIsDragging(true)}
-          onDragEnd={(a, b) => handleDragEnd(b, index)}
+          onDragEnd={(e, b) => handleDragEnd(b, index)}
           onDoubleClick={() => !isDragging && setActiveCard(index)}
         >
           <Card
             content={content}
             isActive={activeCard == index}
+            className="top-0 left-0 transition-all duration-500"
             style={{
-              position: activeCard === index ? "absolute" : "static",
-              top: activeCard === index ? `calc(50% - (370px / 2) - ${10 * index}px)` : "",
-              left: activeCard === index ? `calc(50% - (300px / 2))` : "",
+              position: activeCard === index ? "absolute" : "relative",
+              top: `calc(50% - (370px / 2) - ${10 * index}px)`,
+              left: `calc(50% - (300px / 2))`,
             }}
           />
         </motion.div>

@@ -86,7 +86,7 @@ export const Cards = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [visibleCards, setVisibleCards] = useState<Card[]>(cards);
-  const { width = window.innerWidth } = useWindowSize();
+  const { width } = useWindowSize({ initializeWithValue: true });
 
   const handleDragEnd = (info: PanInfo, card: number) => {
     if (width < 768) {

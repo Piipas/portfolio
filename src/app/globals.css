@@ -19,6 +19,10 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -40,10 +44,3 @@ body {
 .transform-style-3d {
   transform-style: preserve-3d;
 }
-
-/* @media (max-width: 768px) {
-  .card {
-    position: absolute;
-    transform: translateX(-50%) translateY(-50%) !important;
-  }
-} */

@@ -5,9 +5,9 @@ import { Card } from "@/components/atoms/card";
 import { motion, PanInfo, Variants } from "framer-motion";
 import { Button } from "@/components/atoms/button";
 import { X } from "lucide-react";
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useWindowSize } from "usehooks-ts";
+import useScreenSize from "@/lib/hooks/useScreenSize";
 
 const cards: Card[] = [
   {
@@ -15,7 +15,7 @@ const cards: Card[] = [
     title: "Music Player",
     logo: "",
     screenshot: "/cards/screenshots/2.png",
-    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    description: "A Spotify-like music platform where users can play, like, and follow artists.",
     "source-code": "https://github.com/piipas/music-player",
     url: "https://music-player-client.vercel.app/",
     wip: true,
@@ -26,7 +26,7 @@ const cards: Card[] = [
     title: "Lcomeback",
     logo: "",
     screenshot: "/cards/screenshots/1.png",
-    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    description: "An esports platform, which provides information about MENA esports scene.",
     url: "https://lcomeback.com",
     wip: false,
     visible: true,
@@ -36,17 +36,17 @@ const cards: Card[] = [
     title: "Bymaad",
     logo: "/cards/logos/bymaad.png",
     screenshot: "/cards/screenshots/1.png",
-    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    description: "A landing page UI service provider's landing page.",
     url: "https://by-maad.vercel.app",
     wip: true,
     visible: true,
   },
   {
-    label: "Sonething",
-    title: "Sonething",
+    label: "RYOA",
+    title: "Roll your own auth",
     logo: "",
     screenshot: "/cards/screenshots/1.png",
-    description: "An image editor that helps YouTubers make better thumbnails without having to hire a designer",
+    description: "Copy & paste code to roll your own auth easily and for free.",
     "source-code": "https://github.com/Piipas/weather",
     url: "https://weather-seven-pi.vercel.app/",
     wip: false,
@@ -86,7 +86,7 @@ export const Cards = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   const [visibleCards, setVisibleCards] = useState<Card[]>(cards);
-  const { width = window?.innerWidth } = useWindowSize({ debounceDelay: 1000 });
+  const { width } = useScreenSize();
 
   const handleDragEnd = (info: PanInfo, card: number) => {
     if (width < 768) {
@@ -97,7 +97,9 @@ export const Cards = () => {
         const newVisibleCards = visibleCards.map((c) =>
           visibleCards.indexOf(c) === card ? { ...c, visible: false } : c,
         );
-        setVisibleCards(newVisibleCards);
+
+        setVisibleCards((_) => newVisibleCards);
+
         if (newVisibleCards.filter((c) => c.visible).length === 0) {
           setTimeout(() => toggle(), 500);
           setTimeout(() => setVisibleCards(cards), 700);
@@ -105,7 +107,7 @@ export const Cards = () => {
       }
     }
 
-    setIsDragging(false);
+    setTimeout(() => setIsDragging(false), 200);
   };
 
   return (
@@ -131,41 +133,43 @@ export const Cards = () => {
         <X />
       </Button>
       {visibleCards.map((content, index) => (
-        <motion.div
-          key={index}
-          className={cn(
-            "card w-[300px]",
-            width < 768 && "transition-opacity",
-            content.visible ? "visible" : "!opacity-0 invisible",
-            activeCard === index && `duration-500 !transform-none !z-50`,
-            !isDragging && !isAnimating ? "transition-all cursor-pointer" : "cursor-grabbing",
-          )}
-          style={{
-            position: width < 768 ? "absolute" : undefined,
-            top: width < 768 ? `calc(50% - (370px / 2) - ${10 * index}px)` : "",
-            left: width < 768 ? `calc(50% - (300px / 2))` : "",
-          }}
-          variants={itemVariants}
-          drag={width < 768 ? "x" : activeCard !== index ? true : false}
-          dragConstraints={width >= 768 ? constraintsRef : { left: 0, right: 0 }}
-          dragTransition={{ power: 0, min: 0, max: 400, timeConstant: 500 }}
-          dragElastic={width < 768 ? 0.5 : false}
-          onDrag={() => setActiveCard(null)}
-          onDragStart={() => setIsDragging(true)}
-          onDragEnd={(e, b) => handleDragEnd(b, index)}
-          onDoubleClick={() => !isDragging && setActiveCard(index)}
-        >
-          <Card
-            content={content}
-            isActive={activeCard == index}
-            className="top-0 left-0 transition-all duration-500"
+        <Fragment key={index}>
+          {activeCard === index && <div className="placeholder w-[300px]"></div>}
+          <motion.div
+            className={cn(
+              "card w-[300px] h-[400px]",
+              width < 768 && "transition-opacity",
+              content.visible ? "visible" : "!opacity-0 invisible",
+              activeCard === index ? `duration-500 !z-50 !translate-x-0 !translate-y-0` : "relative",
+              !isDragging && !isAnimating ? "transition-all cursor-pointer" : "cursor-grabbing",
+            )}
             style={{
-              position: activeCard === index ? "absolute" : "relative",
-              top: `calc(50% - (370px / 2) - ${10 * index}px)`,
-              left: `calc(50% - (300px / 2))`,
+              position: width < 768 || activeCard === index ? "absolute" : "absolute",
+              top: width < 768 || activeCard === index ? `calc(50% - (370px / 2) - ${10 * index}px)` : undefined,
+              left:
+                width < 768 || activeCard === index
+                  ? `calc(50% - (300px / 2))`
+                  : (width - 300) / 2 + (index % 2 == 0 ? -1 : 1) * ((Math.floor(index / 2) + 0.5) * (300 + 0)),
             }}
-          />
-        </motion.div>
+            variants={itemVariants}
+            drag={width < 768 ? "x" : activeCard !== index ? true : false}
+            dragConstraints={width >= 768 ? constraintsRef : { left: 0, right: 0 }}
+            dragTransition={{ power: 0, min: 0, max: 400, timeConstant: 500 }}
+            dragElastic={width < 768 ? 0.5 : false}
+            // TODO: fix the animation when a card is dragged while the active card is going back to the initial position
+            // onDrag={() => setActiveCard(null)}
+            onDragStart={() => setIsDragging(true)}
+            onDragEnd={(e, b) => handleDragEnd(b, index)}
+            onClick={() => !isDragging && setActiveCard(index)}
+          >
+            <Card
+              content={content}
+              isActive={activeCard == index}
+              className="transition-all duration-500 absolute"
+              screenSize={width}
+            />
+          </motion.div>
+        </Fragment>
       ))}
     </motion.div>
   );

@@ -1,10 +1,7 @@
-"use client";
-
-import { CSSProperties, useEffect, useMemo, useState } from "react";
+import { CSSProperties, useMemo } from "react";
 import { Button } from "./button";
 import { Code, MoveRight } from "lucide-react";
 import Link from "next/link";
-import { useWindowSize } from "usehooks-ts";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
@@ -24,18 +21,16 @@ export const Card = ({
   content,
   style,
   isActive,
+  screenSize,
   className,
 }: {
   content: Card;
   style?: CSSProperties;
   isActive: boolean;
+  screenSize: number;
   className?: string;
 }) => {
   const rotation = useMemo(() => Math.round(Math.random() * (10 - -10) + -10), []);
-  const [screenSize, setScreenSize] = useState(0);
-  const { width, height } = useWindowSize();
-
-  useEffect(() => setScreenSize(width), [width]);
 
   return (
     <div
@@ -57,14 +52,14 @@ export const Card = ({
         </div>
         {/* Back side */}
         <div
-          className="absolute top-1/2 left-1/2 bg-white max-w-[calc(100vw-40px)] w-[400px] 2xl:w-[500px] h-[calc(100vh-100px)] 2xl:h-[calc(100vh-300px)] shadow-lg max-h-[700px] rounded-lg md:rounded-3xl backface-visibility-hidden p-5 2xl:p-10 flex flex-wrap gap-y-6 content-between cursor-auto"
+          className="absolute top-1/2 left-1/2 bg-white max-w-[calc(100vw-40px)] w-[350px] 2xl:w-[450px] min-h-[430px] h-[calc(100vh-200px)] md:h-[430px] 2xl:h-[calc(100vh-300px)] shadow-lg max-h-[700px] rounded-lg md:rounded-xl backface-visibility-hidden p-5 2xl:p-7 flex flex-wrap gap-y-4 content-between cursor-auto"
           style={{ transform: "rotateY(180deg) translateX(50%) translateY(-50%)" }}
         >
-          <div className="space-y-6 flex-wrap">
+          <div className="space-y-3 2xl:space-y-6 flex-wrap">
             <div className="flex gap-x-8 items-center">
               <div
                 className={cn(
-                  "w-14 h-14 rounded-xl bg-slate-200 flex items-center justify-center",
+                  "w-12 h-12 rounded-xl bg-slate-200 flex items-center justify-center",
                   content.logo && "bg-white",
                 )}
               >
@@ -73,7 +68,7 @@ export const Card = ({
               <div className="text-2xl font-medium">{content.title}</div>
             </div>
             <div
-              className={`w-full h-52 2xl:h-64 bg-gray-300 rounded-2xl bg-cover bg-center`}
+              className={`w-full h-44 2xl:h-64 bg-gray-300 rounded-lg bg-cover bg-center`}
               style={{ backgroundImage: `url('${content.screenshot}')` }}
             ></div>
             <p className="text-gray-600 text-center text-base px-2">{content.description}</p>

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "Pipas' Portfolio",
     images: [
       {
-        url: "/thumbnail.png",
+        url: "https://pipas.vercel.app/thumbnail.png",
         width: 600,
         height: 400,
       },

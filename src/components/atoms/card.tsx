@@ -13,7 +13,7 @@ export type Card = {
   description: string;
   "source-code"?: string;
   url: string;
-  wip: boolean;
+  tag: string;
   visible: boolean;
 };
 
@@ -56,7 +56,7 @@ export const Card = ({
           style={{ transform: "rotateY(180deg) translateX(50%) translateY(-50%)" }}
         >
           <div className="space-y-3 2xl:space-y-6 flex-wrap">
-            <div className="flex gap-x-8 items-center">
+            <div className="flex flex-wrap gap-x-6 items-center">
               <div
                 className={cn(
                   "w-12 h-12 rounded-xl bg-slate-200 flex items-center justify-center",
@@ -66,6 +66,12 @@ export const Card = ({
                 {content.logo && <Image src={content.logo} alt="" width={56} height={56} />}
               </div>
               <div className="text-2xl font-medium">{content.title}</div>
+              {/* TODO: add the card tag */}
+              {/* {content.tag && (
+                <div className="bg-gray-300 text-sm px-2 py-1 text-background rounded-lg justify-self-end">
+                  {content.tag}
+                </div>
+              )} */}
             </div>
             <div
               className={`w-full h-44 2xl:h-64 bg-gray-300 rounded-lg bg-cover bg-center`}

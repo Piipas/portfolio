@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "author": {
+    "email": "ismailpipas@gmail.com",
+    "name": "Pipas",
+    "url": "https://pipas.vercel.app"
+  },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

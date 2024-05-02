@@ -18,7 +18,7 @@ const cards: Card[] = [
     description: "A Spotify-like music platform where users can play, like, and follow artists.",
     "source-code": "https://github.com/piipas/music-player",
     url: "https://music-player-client.vercel.app/",
-    wip: true,
+    tag: "WIP",
     visible: true,
   },
   {
@@ -28,7 +28,7 @@ const cards: Card[] = [
     screenshot: "/cards/screenshots/1.png",
     description: "An esports platform, which provides information about MENA esports scene.",
     url: "https://lcomeback.com",
-    wip: false,
+    tag: "Owner",
     visible: true,
   },
   {
@@ -38,7 +38,7 @@ const cards: Card[] = [
     screenshot: "/cards/screenshots/1.png",
     description: "A landing page UI service provider's landing page.",
     url: "https://by-maad.vercel.app",
-    wip: true,
+    tag: "",
     visible: true,
   },
   {
@@ -47,9 +47,9 @@ const cards: Card[] = [
     logo: "",
     screenshot: "/cards/screenshots/1.png",
     description: "Copy & paste code to roll your own auth easily and for free.",
-    "source-code": "https://github.com/Piipas/weather",
-    url: "https://weather-seven-pi.vercel.app/",
-    wip: false,
+    "source-code": "https://github.com/smakosh/roll-your-own-auth",
+    url: "https://roll-your-own-auth.vercel.app/",
+    tag: "Contributor",
     visible: true,
   },
 ];
@@ -88,7 +88,7 @@ export const Cards = () => {
   const [visibleCards, setVisibleCards] = useState<Card[]>(cards);
   const { width } = useScreenSize();
 
-  const handleDragEnd = (info: PanInfo, card: number) => {
+  const handleCardDragEnd = (info: PanInfo, card: number) => {
     if (width < 768) {
       const threshold = 100;
       const x = info.offset.x;
@@ -159,7 +159,7 @@ export const Cards = () => {
             // TODO: fix the animation when a card is dragged while the active card is going back to the initial position
             // onDrag={() => setActiveCard(null)}
             onDragStart={() => setIsDragging(true)}
-            onDragEnd={(e, b) => handleDragEnd(b, index)}
+            onDragEnd={(e, b) => handleCardDragEnd(b, index)}
             onClick={() => !isDragging && setActiveCard(index)}
           >
             <Card

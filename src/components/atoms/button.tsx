@@ -19,7 +19,7 @@ const button = cva("transition-all", {
     },
     size: {
       icon: "w-14 h-14 p-4",
-      regular: "w-auto px-6 py-3 text-lg",
+      regular: "px-4 md:px-6 py-3 text-sm md:text-lg",
     },
     radius: {
       default: "rounded-xl",

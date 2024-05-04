@@ -1,6 +1,6 @@
 import { CSSProperties, useMemo } from "react";
 import { Button } from "./button";
-import { Code, MoveRight } from "lucide-react";
+import { Code, Github, MoveRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ export type Card = {
   description: string;
   "source-code"?: string;
   url: string;
-  tag: string;
+  tags?: string[];
   visible: boolean;
 };
 
@@ -36,7 +36,7 @@ export const Card = ({
     <div
       className={cn(
         className,
-        "w-[300px] h-[400px] flex items-center justify-center text-3xl text-background select-none",
+        "w-[300px] h-[400px] flex items-center justify-center text-3xl text-background select-none pb-16 md:p-0",
       )}
       style={{ perspective: "1000px", zIndex: isActive ? "50" : undefined, ...style }}
     >
@@ -52,7 +52,7 @@ export const Card = ({
         </div>
         {/* Back side */}
         <div
-          className="absolute top-1/2 left-1/2 bg-white max-w-[calc(100vw-40px)] w-[350px] 2xl:w-[450px] min-h-[430px] h-[calc(100vh-200px)] md:h-[430px] 2xl:h-[calc(100vh-300px)] shadow-lg max-h-[700px] rounded-lg md:rounded-xl backface-visibility-hidden p-5 2xl:p-7 flex flex-wrap gap-y-4 content-between cursor-auto"
+          className="absolute top-1/2 left-1/2 bg-white max-w-[calc(100vw-40px)] w-[350px] 2xl:w-[450px] min-h-[430px] h-[calc(100vh-400px)] md:h-[460px] 2xl:h-[calc(100vh-300px)] shadow-lg max-h-[700px] rounded-lg md:rounded-xl backface-visibility-hidden p-5 2xl:p-7 flex flex-wrap gap-y-4 content-between cursor-auto"
           style={{ transform: "rotateY(180deg) translateX(50%) translateY(-50%)" }}
         >
           <div className="space-y-3 2xl:space-y-6 flex-wrap">
@@ -63,20 +63,27 @@ export const Card = ({
                   content.logo && "bg-white",
                 )}
               >
-                {content.logo && <Image src={content.logo} alt="" width={56} height={56} />}
+                {content.logo ? (
+                  <Image src={content.logo} alt="" width={56} height={56} />
+                ) : (
+                  <Github className="text-gray-300" />
+                )}
               </div>
-              <div className="text-2xl font-medium">{content.title}</div>
-              {/* TODO: add the card tag */}
-              {/* {content.tag && (
-                <div className="bg-gray-300 text-sm px-2 py-1 text-background rounded-lg justify-self-end">
-                  {content.tag}
-                </div>
-              )} */}
+              <div className="text-[22px] font-medium">{content.title}</div>
             </div>
             <div
-              className={`w-full h-44 2xl:h-64 bg-gray-300 rounded-lg bg-cover bg-center`}
+              className={`w-full bg-gray-300 rounded-lg bg-cover bg-center aspect-video shadow-md`}
               style={{ backgroundImage: `url('${content.screenshot}')` }}
             ></div>
+            {content.tags && (
+              <div className="flex justify-center gap-2 flex-wrap">
+                {content.tags.map((tag) => (
+                  <span key={tag} className="bg-gray-300 text-gray-600 text-xs px-2 rounded-md py-0.5">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
             <p className="text-gray-600 text-center text-base px-2">{content.description}</p>
           </div>
           <div className="flex gap-x-4 w-full justify-end">

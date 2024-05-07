@@ -8,50 +8,7 @@ import { X } from "lucide-react";
 import { Fragment, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import useScreenSize from "@/lib/hooks/useScreenSize";
-
-const cards: Card[] = [
-  {
-    label: "Music Player",
-    title: "Music Player",
-    logo: "",
-    screenshot: "/cards/screenshots/2.png",
-    description: "A Spotify-like music platform where users can play, like, and follow artists.",
-    "source-code": "https://github.com/piipas/music-player",
-    url: "https://music-player-client.vercel.app/",
-    tags: ["WIP"],
-    visible: true,
-  },
-  {
-    label: "Lcomeback",
-    title: "Lcomeback",
-    logo: "",
-    screenshot: "/cards/screenshots/1.png",
-    description: "An esports platform, which provides information about MENA esports scene.",
-    url: "https://lcomeback.com",
-    tags: ["Owner"],
-    visible: true,
-  },
-  {
-    label: "Bymaad",
-    title: "Bymaad",
-    logo: "/cards/logos/bymaad.png",
-    screenshot: "/cards/screenshots/3.png",
-    description: "A landing page UI service provider's landing page.",
-    url: "https://by-maad.vercel.app",
-    visible: true,
-  },
-  {
-    label: "RYOA",
-    title: "Roll your own auth",
-    logo: "",
-    screenshot: "/cards/screenshots/4.png",
-    description: "Copy & paste code to roll your own auth easily and for free.",
-    "source-code": "https://github.com/smakosh/roll-your-own-auth",
-    url: "https://roll-your-own-auth.vercel.app/",
-    tags: ["Contributor"],
-    visible: true,
-  },
-];
+import cards from "@/data/cards.json";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0, zIndex: -10 },

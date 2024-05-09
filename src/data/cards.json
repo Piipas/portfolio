@@ -11,13 +11,14 @@
     "visible": true
   },
   {
-    "label": "Lcomeback",
-    "title": "Lcomeback",
+    "label": "Junior Prep",
+    "title": "Junior Prep",
     "logo": "",
-    "screenshot": "/cards/screenshots/1.png",
-    "description": "An esports platform, which provides information about MENA esports scene.",
-    "url": "https://lcomeback.com",
-    "tags": ["Owner"],
+    "screenshot": "/cards/screenshots/5.png",
+    "description": "Junior-prep is a website for junior web developers to practice and find teams to collaborate with.",
+    "source-code": "https://github.com/polymahh/junior-prep",
+    "url": "https://junior-prep.vercel.app",
+    "tags": ["Collaborator", "WIP"],
     "visible": true
   },
   {

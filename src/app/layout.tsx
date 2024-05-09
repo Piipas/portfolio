@@ -11,22 +11,25 @@ export const metadata: Metadata = {
     "Welcome! I'm a self-taught developer passionate about coding impactful tech solutions. From open source to startups, join me in exploring the world of coding where innovation meets purpose.",
   authors: {
     name: "Pipas",
-    url: "https://pipas.vercel.app",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
   },
   openGraph: {
     title: "Pipas",
     description:
       "Welcome! I'm a self-taught developer passionate about coding impactful tech solutions. From open source to startups, join me in exploring the world of coding where innovation meets purpose.",
 
-    url: "https://pipas.vercel.app",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
     siteName: "Pipas' Portfolio",
     images: [
       {
-        url: "https://pipas.vercel.app/thumbnail.png",
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/thumbnail.png`,
         width: 600,
         height: 400,
       },
     ],
+  },
+  icons: {
+    icon: `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`,
   },
 };
 

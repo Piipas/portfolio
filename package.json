@@ -11,7 +11,7 @@
   "author": {
     "email": "ismailpipas@gmail.com",
     "name": "Pipas",
-    "url": "https://pipas.vercel.app"
+    "url": "https://pipas.dev"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",

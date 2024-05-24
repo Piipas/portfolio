@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Pipas",
   description:
-    "Welcome! I'm a self-taught developer passionate about coding impactful tech solutions. From open source to startups, join me in exploring the world of coding where innovation meets purpose.",
+    "Welcome! I'm Ismail Baalouk, also known as Pipas. As a self-taught developer, I'm passionate about creating impactful tech solutions. From open source projects to startups, join me in exploring the world of coding where innovation meets purpose.",
   authors: {
     name: "Pipas",
     url: process.env.NEXT_PUBLIC_BASE_URL,
@@ -16,8 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pipas",
     description:
-      "Welcome! I'm a self-taught developer passionate about coding impactful tech solutions. From open source to startups, join me in exploring the world of coding where innovation meets purpose.",
-
+      "Welcome! I'm Ismail Baalouk, also known as Pipas. As a self-taught developer, I'm passionate about creating impactful tech solutions. From open source projects to startups, join me in exploring the world of coding where innovation meets purpose.",
     url: process.env.NEXT_PUBLIC_BASE_URL,
     siteName: "Pipas' Portfolio",
     images: [

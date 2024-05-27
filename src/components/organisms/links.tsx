@@ -40,12 +40,12 @@ const links: Link[] = [
     label: "Github",
     point: false,
   },
-  {
-    icon: <File />,
-    url: "mailto:is.baalouk@gmail.com",
-    label: "Resume",
-    point: false,
-  },
+  // {
+  //   icon: <File />,
+  //   url: "mailto:is.baalouk@gmail.com",
+  //   label: "Resume",
+  //   point: false,
+  // },
   {
     icon: <Mail />,
     url: "mailto:is.baalouk@gmail.com",

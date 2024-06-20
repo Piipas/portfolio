@@ -99,7 +99,7 @@ export const Links = () => {
             size="links"
           >
             <span className="text-[24px]">{icon}</span>
-            <span>{label}</span>
+            <span className="hidden md:block">{label}</span>
           </Button>
           {/* <p className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-center text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
             {label}

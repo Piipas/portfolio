@@ -15,7 +15,7 @@ const button = cva("transition-all", {
   variants: {
     intent: {
       // primary: "bg-gradient-to-t from-gray-900 to-gray-800 text-foreground",
-      primary: "border border-[0.2px] border-white/60 px-4 py-1 relative text-foreground hover:bg-white/10",
+      primary: "border border-[0.2px] border-white/60 px-4 !py-2 sm:py-1 relative text-foreground hover:bg-white/10",
       secondary: "bg-gray-700 hover:bg-gray-800",
       regular: "bg-gray-200 text-gray-600 hover:bg-gray-300",
     },

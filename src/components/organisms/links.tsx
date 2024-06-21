@@ -83,27 +83,24 @@ export const Links = () => {
   const { toggle } = useCards();
 
   return (
-    <motion.div className="flex gap-x-6 justify-center" initial="hidden" animate="visible" variants={containerVariants}>
+    <motion.div
+      className="flex gap-x-6 justify-center flex-wrap gap-y-5 px-6 sm:px-0"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       {links.map(({ icon, url, label, point }) => (
-        <motion.div key={label} className="group relative" variants={buttonVariants}>
+        <motion.div key={label} className="group relative w-full sm:w-auto" variants={buttonVariants}>
           <Button
-            // className={cn(
-            //   "md:group-hover:-translate-y-3 transition-transform duraton-500 ease-in-out",
-            //   point &&
-            //     "after:w-4 after:h-4 after:absolute after:-top-1 after:-right-1 after:rounded-full after:bg-foreground after:opacity-0 after:animate-show",
-            // )}
-            className="flex gap-x-2"
+            className="flex gap-x-2 w-full sm:w-auto justify-center"
             onClick={() => (url ? window.open(url, "_blank") : toggle())}
             radius="none"
             variant="primary"
             size="links"
           >
             <span className="text-[24px]">{icon}</span>
-            <span className="hidden md:block">{label}</span>
+            <span className="">{label}</span>
           </Button>
-          {/* <p className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-center text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            {label}
-          </p> */}
         </motion.div>
       ))}
     </motion.div>

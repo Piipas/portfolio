@@ -84,7 +84,7 @@ export const Links = () => {
 
   return (
     <motion.div
-      className="flex gap-x-6 justify-center flex-wrap gap-y-5 px-6 sm:px-0"
+      className="flex gap-x-6 justify-center flex-wrap gap-y-7 px-6 sm:px-0"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

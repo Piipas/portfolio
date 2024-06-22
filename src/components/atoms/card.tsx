@@ -4,6 +4,7 @@ import { Code, Github, MoveRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { GlareCard } from "../ui/glare-card";
 
 export type Card = {
   label: string;
@@ -46,10 +47,9 @@ export const Card = ({
           transform: isActive || screenSize < 768 ? `rotate(${0}deg) rotateY(180deg)` : `rotate(${rotation}deg)`,
         }}
       >
-        {/* Front side */}
-        <div className="absolute top-0 left-0 bg-white w-full h-full font-extrabold flex items-center justify-center rounded-3xl shadow-2xl overflow-hidden backface-visibility-hiddenn">
-          {content.label}
-        </div>
+        <GlareCard className="flex items-center justify-center w-full h-full top-0 left-0 overflow-hidden backface-visibility-hidden">
+          <p className="text-foreground">{content.label}</p>
+        </GlareCard>
         {/* Back side */}
         <div
           className="absolute top-1/2 left-1/2 bg-white max-w-[calc(100vw-40px)] w-[350px] 2xl:w-[450px] min-h-[430px] h-[calc(100vh-400px)] md:h-[460px] 2xl:h-[calc(100vh-300px)] shadow-lg max-h-[700px] rounded-lg md:rounded-xl backface-visibility-hidden p-5 2xl:p-7 flex flex-wrap gap-y-4 content-between cursor-auto"

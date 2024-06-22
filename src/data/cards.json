@@ -17,8 +17,8 @@
     "screenshot": "/cards/screenshots/5.png",
     "description": "Junior-prep is a website for junior web developers to practice and find teams to collaborate with.",
     "source-code": "https://github.com/polymahh/junior-prep",
-    "url": "https://junior-prep.vercel.app",
-    "tags": ["Collaborator", "WIP"],
+    "url": "https://junior-prep.com",
+    "tags": ["Collaborator"],
     "visible": true
   },
   {

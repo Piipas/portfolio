@@ -39,7 +39,10 @@ const CardBackSide = ({
         <h2 className="dark:text-white text-black mt-4 text-sm font-light">{description}</h2>
         <div className="flex gap-x-2">
           {tags?.map((tag) => (
-            <p className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5">
+            <p
+              key={tag}
+              className="text-sm border font-light dark:border-white/[0.2] border-black/[0.2] rounded-full mt-4 text-black dark:text-white px-2 py-0.5"
+            >
               {tag}
             </p>
           ))}

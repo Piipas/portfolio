@@ -1,11 +1,7 @@
 import { CSSProperties, useMemo } from "react";
-import { Button } from "./button";
-import { Code, Github, MoveRight } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { GlareCard } from "../ui/glare-card";
 import CardBackSide from "../organisms/card-back-side";
+import CardFrontSide from "../organisms/card-front-side";
 
 export type Card = {
   label: string;
@@ -48,9 +44,7 @@ export const Card = ({
           transform: isActive || screenSize < 768 ? `rotate(${0}deg) rotateY(180deg)` : `rotate(${rotation}deg)`,
         }}
       >
-        <GlareCard className="flex items-center justify-center w-full h-full top-0 left-0 overflow-hidden backface-visibility-hidden">
-          <p className="text-foreground">{label}</p>
-        </GlareCard>
+        <CardFrontSide>{label}</CardFrontSide>
         <CardBackSide
           description={description}
           sourceCode={sourceCode}

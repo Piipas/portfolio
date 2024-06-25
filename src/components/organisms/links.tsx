@@ -92,7 +92,7 @@ export const Links = () => {
       {links.map(({ icon, url, label, point }) => (
         <motion.div key={label} className="group relative w-full sm:w-auto" variants={buttonVariants}>
           <Button
-            className="flex gap-x-2 w-full sm:w-auto justify-center"
+            className="flex gap-x-2 w-full sm:w-auto"
             onClick={() => (url ? window.open(url, "_blank") : toggle())}
             radius="none"
             variant="primary"

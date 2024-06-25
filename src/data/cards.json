@@ -5,9 +5,9 @@
     "logo": "",
     "screenshot": "/cards/screenshots/2.png",
     "description": "A Spotify-like music platform where users can play, like, and follow artists.",
-    "source-code": "https://github.com/piipas/music-player",
+    "sourceCode": "https://github.com/piipas/music-player",
     "url": "https://music-player-client.vercel.app/",
-    "tags": ["WIP"],
+    "tags": ["Work In Progress"],
     "visible": true
   },
   {
@@ -16,9 +16,9 @@
     "logo": "",
     "screenshot": "/cards/screenshots/5.png",
     "description": "Junior-prep is a website for junior web developers to practice and find teams to collaborate with.",
-    "source-code": "https://github.com/polymahh/junior-prep",
+    "sourceCode": "https://github.com/polymahh/junior-prep",
     "url": "https://junior-prep.com",
-    "tags": ["Collaborator"],
+    "tags": ["Collaborator", "Contributor"],
     "visible": true
   },
   {
@@ -26,8 +26,9 @@
     "title": "Bymaad",
     "logo": "/cards/logos/bymaad.png",
     "screenshot": "/cards/screenshots/3.png",
-    "description": "A landing page UI service provider's landing page.",
+    "description": "A reliable landing page UI service provider's innovative landing page.",
     "url": "https://by-maad.vercel.app",
+    "tags": ["Freelance"],
     "visible": true
   },
   {
@@ -36,7 +37,7 @@
     "logo": "",
     "screenshot": "/cards/screenshots/4.png",
     "description": "Copy & paste code to roll your own auth easily and for free.",
-    "source-code": "https://github.com/smakosh/roll-your-own-auth",
+    "sourceCode": "https://github.com/smakosh/roll-your-own-auth",
     "url": "https://roll-your-own-auth.vercel.app/",
     "tags": ["Contributor"],
     "visible": true

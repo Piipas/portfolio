@@ -11,17 +11,17 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: JSX.Element | string | (JSX.Element | string)[];
 }
 
-const button = cva("transition-all", {
+const button = cva("transition-all flex items-center justify-center", {
   variants: {
     intent: {
       // primary: "bg-gradient-to-t from-gray-900 to-gray-800 text-foreground",
-      primary: "border border-[0.2px] border-white/60 px-4 !py-2 sm:py-1 relative text-foreground hover:bg-white/10",
+      primary: "border border-[0.2px] border-white/60 px-4 sm:py-1 relative text-foreground hover:bg-white/10",
       secondary: "bg-gray-700 hover:bg-gray-800",
       regular: "bg-gray-200 text-gray-600 hover:bg-gray-300",
     },
     size: {
       icon: "w-14 h-14 p-4",
-      regular: "px-4 md:px-6 py-3 text-sm md:text-lg",
+      regular: "px-4 md:px-6 py-1 text-sm md:text-lg",
       links: "px-4 py-1",
     },
     radius: {

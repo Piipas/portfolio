@@ -32,14 +32,13 @@
     "visible": true
   },
   {
-    "label": "RYOA",
-    "title": "Roll your own auth",
+    "label": "Currency Reminder",
+    "title": "Currency Reminder",
     "logo": "",
     "screenshot": "/cards/screenshots/4.png",
-    "description": "Copy & paste code to roll your own auth easily and for free.",
-    "sourceCode": "https://github.com/smakosh/roll-your-own-auth",
-    "url": "https://roll-your-own-auth.vercel.app/",
-    "tags": ["Contributor"],
+    "description": "Subscribe and get notified each time 1 USD reaches 10 MAD.",
+    "sourceCode": "https://github.com/piipas/currency-reminder",
+    "url": "https://currency-reminder.vercel.app",
     "visible": true
   }
 ]

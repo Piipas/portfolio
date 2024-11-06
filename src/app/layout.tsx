@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pipas",
+  title: "Ismail Baalouk - Pipas",
   description:
     "Welcome! I'm Ismail Baalouk, also known as Pipas. As a self-taught developer, I'm passionate about creating impactful tech solutions. From open source projects to startups, join me in exploring the world of coding where innovation meets purpose.",
   authors: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: process.env.NEXT_PUBLIC_BASE_URL,
   },
   openGraph: {
-    title: "Pipas",
+    title: "Ismail Baalouk - Pipas",
     description:
       "Welcome! I'm Ismail Baalouk, also known as Pipas. As a self-taught developer, I'm passionate about creating impactful tech solutions. From open source projects to startups, join me in exploring the world of coding where innovation meets purpose.",
     url: process.env.NEXT_PUBLIC_BASE_URL,

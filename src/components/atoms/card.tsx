@@ -53,7 +53,7 @@ export const Card = ({
           label={label}
           url={url}
           screenshot={screenshot}
-          className="bg-white dark:bg-black w-full h-full"
+          className="bg-black w-full h-full"
         />
       </div>
     </div>

@@ -6,7 +6,7 @@
     "screenshot": "/cards/screenshots/2.png",
     "description": "A Spotify-like music platform where users can play, like, and follow artists.",
     "sourceCode": "https://github.com/piipas/music-player",
-    "url": "https://music-player-client.vercel.app/",
+    "url": "https://pipasify.pipas.dev",
     "tags": ["Work In Progress"],
     "visible": true
   },

@@ -1,7 +1,7 @@
 [
   {
-    "label": "Music Player",
-    "title": "Music Player",
+    "label": "Pipasify",
+    "title": "Pipasify",
     "logo": "",
     "screenshot": "/cards/screenshots/2.png",
     "description": "A Spotify-like music platform where users can play, like, and follow artists.",
@@ -32,13 +32,14 @@
     "visible": true
   },
   {
-    "label": "Currency Reminder",
-    "title": "Currency Reminder",
+    "label": "Handsome",
+    "title": "Handsome",
     "logo": "",
-    "screenshot": "/cards/screenshots/4.png",
-    "description": "Subscribe and get notified each time 1 USD reaches 10 MAD.",
-    "sourceCode": "https://github.com/piipas/currency-reminder",
-    "url": "https://currency-reminder.vercel.app",
+    "screenshot": "/cards/screenshots/6.png",
+    "description": "Mention the person you think is handsome and share.",
+    "sourceCode": "https://github.com/piipas/handsome",
+    "url": "https://handsome.pipas.dev",
+    "tags": ["jQuery", "Twig"],
     "visible": true
   }
 ]

@@ -32,14 +32,14 @@
     "visible": true
   },
   {
-    "label": "Handsome",
-    "title": "Handsome",
+    "label": "Birthday",
+    "title": "Birthday Reminder",
     "logo": "",
-    "screenshot": "/cards/screenshots/6.png",
-    "description": "Mention the person you think is handsome and share.",
-    "sourceCode": "https://github.com/piipas/handsome",
-    "url": "https://handsome.pipas.dev",
-    "tags": ["jQuery", "Twig"],
+    "screenshot": "/cards/screenshots/7.png",
+    "description": "A web app that sends email reminders for the birthdays of your close ones.",
+    "sourceCode": "https://github.com/piipas/birthday-reminder",
+    "url": "https://birthday.pipas.dev",
+    "tags": ["Nextjs", "TailwindCss", "Better-Auth"],
     "visible": true
   }
 ]

@@ -12,7 +12,7 @@ const About = () => {
         target="Ismail Baalouk"
         className={cn("text-5xl xl:text-8xl text-gray-300 font-extrabold uppercase", robotoMono.className)}
       />
-      <Typewriter target="Full stack web developer" className="text-xl" />
+      <Typewriter target="Fullstack developer" className="text-xl" />
     </div>
   );
 };
